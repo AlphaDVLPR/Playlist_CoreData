@@ -15,14 +15,18 @@ class PlaylistController {
     //MARK: - CRUD
     //Create
     func createPlaylist(withName name: String) {
-        
+        _ = Playlist(playlistName: name)
+        saveToPersistentStores()
     }
     //Read
     //Update
+    
     //Delete
     func deletePlaylist(playlist: Playlist) {
-        
+        CoreDataStack.context.delete(playlist)
+        saveToPersistentStores()
     }
+    
     //Save
     func saveToPersistentStores() {
         do {
