@@ -7,10 +7,19 @@
 //
 
 import Foundation
+import CoreData
 
 class PlaylistController {
     
     //MARK: - Singleton
+    static let shared = PlaylistController()
+    
+    //MARK: - Local Source of Truth
+    var playlists: [Playlist] {
+        
+        let fetchRequest: NSFetchRequest<Playlist> = Playlist.fetchRequest()
+        return (try? CoreDataStack.context.fetch(fetchRequest)) ?? []
+    }
     
     //MARK: - CRUD
     //Create
